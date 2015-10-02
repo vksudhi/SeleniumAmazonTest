@@ -3,13 +3,16 @@ import org.openqa.selenium.By.ByClassName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseClass {
 		WebDriver driver;
+		WebDriverWait wait;
 
 		
 		public BaseClass(WebDriver driver) {
 			this.driver = driver;
+			wait = new WebDriverWait(driver, 10);
 		}
 		
 		public void open (String URL) {

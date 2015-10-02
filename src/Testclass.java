@@ -30,24 +30,19 @@ public class Testclass {
 	
 	@Test
 	public void testAppleWatch() throws InterruptedException {
-		HomePage home = new HomePage(driver);
 		String SearchWord ="apple watch";
 		String refinedSearch = "Smart Watches";		
-		String ratingLocator = "acrPopover";
 		String ratingVerify = "3.8 out of 5 stars";
 
+		HomePage home = new HomePage(driver);
 		ResultsPage resultList = home.searchText(SearchWord);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("categoryRefinementsSection")));
-		org.junit.Assert.assertTrue(element != null);
 		RefinedSearchPage refinedPage = resultList.getToRefinedSearchPage(refinedSearch);
 		org.junit.Assert.assertTrue(refinedPage != null);
-		element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("s-access-image")));
-		org.junit.Assert.assertTrue(element != null);
-		refinedPage.getFirstLink();
-		element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(ratingLocator)));
-		org.junit.Assert.assertTrue(element != null);
-		org.junit.Assert.assertEquals(ratingVerify, element.getAttribute("title"));		
+		/* Get the first link */
+		ProductPage prdPage = refinedPage.getFirstResult();
+		org.junit.Assert.assertTrue(prdPage != null);
+		/* Assert on rating.*/;
+		org.junit.Assert.assertEquals(ratingVerify, prdPage.getRating());		
 	}
 }
 

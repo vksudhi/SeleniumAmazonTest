@@ -5,13 +5,12 @@ import com.thoughtworks.selenium.webdriven.commands.GetTitle;
 
 public class HomePage extends BaseClass {
 	String URl ="http://www.amazon.com/";
-	String searchLocator ="twotabsearchtextbox";
-	String clickButton="nav-input";
+	String searchLocator ="twotabsearchtextbox"; // Search box
+	String clickButton="nav-input"; //Click button
 	
 	HomePage(WebDriver driver) throws InterruptedException{
 		super(driver);
 		open(URl);
-		//driver.wait(10);		
 	}
 	
 	public ResultsPage searchText(String text) {

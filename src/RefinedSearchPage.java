@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class RefinedSearchPage extends BaseClass {
 
@@ -10,17 +11,13 @@ public class RefinedSearchPage extends BaseClass {
 		super(driver);
 	}
 
-	public RefinedSearchPage getFirstLink() {    
-        /* Read BrandNames */
-		System.out.println("Getting First link....");
+	public ProductPage getFirstResult() {    
         
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("s-access-image")));
 		java.util.List<WebElement> categoryList =
         		driver.findElements(By.id(searchResultsLocator)); 	
 
-		System.out.println("Getting First link 1....");
         WebElement ele = categoryList.get(0);
-        
-        //System.out.println(ele.getText());
         
         /* Hard Coded !!!! */
         ele = ele.findElement(By.id("result_0"));
@@ -28,7 +25,7 @@ public class RefinedSearchPage extends BaseClass {
         ele.findElement(By.tagName("a")).click();;
         
         
-        return null;
+        return new ProductPage(driver);
     }
 
 
